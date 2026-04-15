@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 20
 
-      - run: pnpm i -g --force corepack@latest && corepack enable
+      - run: npm i -g --force corepack@latest && corepack enable
 
       - name: Install dependencies
         run: npx nypm@latest i
@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 20
 
-      - run: pnpm i -g --force corepack@latest && corepack enable
+      - run: npm i -g --force corepack@latest && corepack enable pnpm
 
       - name: Install dependencies
         run: npx nypm@latest i
@@ -60,12 +60,12 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
 
-      - run: pnpm i -g --force corepack@latest && corepack enable
+      - run: npm i -g --force corepack@latest && corepack enable pnpm
 
       - name: Install dependencies
         run: npx nypm@latest i
 
-      - name: Build
+      - name: Release
         run: pnpm release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
