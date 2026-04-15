@@ -1,43 +1,39 @@
-import {
-  defineNuxtModule,
-  addPlugin,
-  createResolver,
-  addImports,
-} from "@nuxt/kit";
-import type { PresetConfig } from "./runtime/utils/presets";
+import { defineNuxtModule, addPlugin, createResolver, addImports } from '@nuxt/kit'
+import type { PresetConfig } from './runtime/utils/presets'
+
+type StraggerOption =
+  | number
+  | {
+      delay?: number
+      direction: 'normal' | 'reverse' | 'center' | 'random'
+      from: 'center' | 'start' | 'end'
+    }
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
-  presets: Record<string, PresetConfig>;
-  stagger:
-    | number
-    | {
-        delay?: number;
-        direction: "normal" | "reverse" | "center" | "random";
-        from: "center" | "start" | "end";
-      };
+  presets: Record<string, PresetConfig>
+  stagger: StraggerOption
 }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "nuxt-reveal",
-    configKey: "reveal",
+    name: 'nuxt-reveal',
+    configKey: 'reveal',
   },
   // Default configuration options of the Nuxt module
   defaults: { presets: {}, stagger: 80 },
 
   setup(_options, _nuxt) {
-    const resolver = createResolver(import.meta.url);
-    _options.presets;
+    const resolver = createResolver(import.meta.url)
 
-    _nuxt.options.runtimeConfig.public.reveal = _options;
+    _nuxt.options.runtimeConfig.public.reveal = _options
 
-    addPlugin(resolver.resolve("./runtime/plugins/reveal.client"));
+    addPlugin(resolver.resolve('./runtime/plugins/reveal.client'))
     addImports({
-      name: "useReveal",
-      from: resolver.resolve("./runtime/composables/useReveal.ts"),
-    });
+      name: 'useReveal',
+      from: resolver.resolve('./runtime/composables/useReveal.ts'),
+    })
 
-    _nuxt.options.css.push(resolver.resolve("./runtime/assets/styles.css"));
+    _nuxt.options.css.push(resolver.resolve('./runtime/assets/styles.css'))
   },
-});
+})

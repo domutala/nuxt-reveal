@@ -1,4 +1,7 @@
 export default defineNuxtConfig({
+
+  modules: ["nuxt-reveal"],
+  devtools: { enabled: true },
   app: {
     head: {
       link: [
@@ -10,9 +13,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  modules: ["nuxt-reveal"],
-  devtools: { enabled: true },
   compatibilityDate: "latest",
 
   reveal: {

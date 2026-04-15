@@ -1,19 +1,19 @@
-export type RevealPreset =
-  | "fade"
-  | "fade-up"
-  | "fade-down"
-  | "slide-up"
-  | "slide-down"
-  | "zoom-in"
-  | "zoom-out";
+export type RevealPreset
+  = | "fade"
+    | "fade-up"
+    | "fade-down"
+    | "slide-up"
+    | "slide-down"
+    | "zoom-in"
+    | "zoom-out";
 
 export interface PresetConfig {
-  enter: string[];
-  leave: string[];
+  enter: string[]
+  leave: string[]
 }
 
 export const presets: Record<RevealPreset, PresetConfig> = {
-  fade: {
+  "fade": {
     enter: ["nr-fade-in"],
     leave: ["nr-fade-out"],
   },

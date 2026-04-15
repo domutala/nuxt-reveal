@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { createConfigForNuxt } from '@nuxt/eslint-config/flat'
 
 // Run `npx @eslint/config-inspector` to inspect the resolved config interactively
@@ -15,6 +14,11 @@ export default createConfigForNuxt({
     ],
   },
 })
-  .append({
-    "@stylistic/quotes": "off"
+  .append()
+  .overrideRules({
+    '@stylistic/quotes': 'off',
+    '@stylistic/semi': 'off',
+    '@stylistic/operator-linebreak': 'off',
+    '@stylistic/brace-style': 'off',
+    '@stylistic/indent': "off",
   })

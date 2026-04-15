@@ -21,7 +21,11 @@
       Dicta, iste mollitia.
     </div>
 
-    <div v-for="i in 3" :key="i" v-reveal="'fade-up'">
+    <div
+      v-for="i in 3"
+      :key="i"
+      v-reveal="'fade-up'"
+    >
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error a dolore
       assumenda consectetur, ex incidunt, sapiente officia totam, temporibus
       dicta quia beatae! Consequuntur ad corporis illo! Neque ea dolore modi!
@@ -58,14 +62,18 @@
     </div>
 
     <div
+      v-reveal-group="'fade-up'"
       style="
         display: grid;
         gap: 20px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
       "
-      v-reveal-group="'fade-up'"
     >
-      <div v-for="i in 5" :key="i" reveal-item>
+      <div
+        v-for="i in 5"
+        :key="i"
+        reveal-item
+      >
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error a dolore
         assumenda consectetur, ex incidunt, sapiente officia totam, temporibus
         dicta quia beatae! Consequuntur ad corporis illo! Neque ea dolore modi!
