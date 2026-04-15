@@ -11,8 +11,6 @@ Compatible with any animation library like [animate.css](https://animate.style/)
 
 * [✨ Release Notes](/CHANGELOG.md)
 
----
-
 # Features
 
 * Based on `IntersectionObserver` (native and performant)
@@ -25,15 +23,11 @@ Compatible with any animation library like [animate.css](https://animate.style/)
 * Zero external dependencies
 * SSR safe (Nuxt 3)
 
----
-
-# 📦 Installation
+# Installation
 
 ```bash
 npx nuxt module add nuxt-reveal
 ```
-
----
 
 # Usage
 
@@ -68,8 +62,6 @@ The directive is automatically registered.
 </style>
 ```
 
----
-
 ## 2. With options
 
 ```vue
@@ -91,8 +83,6 @@ const reveal = {
 </template>
 ```
 
----
-
 # Group animations (stagger)
 
 Allows multiple elements to be animated sequentially (stagger effect).
@@ -111,8 +101,6 @@ Allows multiple elements to be animated sequentially (stagger effect).
 
 👉 All elements with `reveal-item` will be animated with a progressive delay.
 
----
-
 ## Stagger configuration
 
 In `nuxt.config.ts`:
@@ -128,8 +116,6 @@ export default defineNuxtConfig({
   },
 });
 ```
-
----
 
 ## Advanced stagger
 
@@ -158,8 +144,6 @@ export default defineNuxtConfig({
 | `reverse` | reverse order                |
 | `random`  | pseudo-random order          |
 
----
-
 # Per-element delay
 
 You can override the delay individually:
@@ -179,8 +163,6 @@ You can override the delay individually:
 * `200` → converted to `200ms`
 * `200ms`
 * `0.3s`
-
----
 
 # Integration with [animate.css](https://animate.style/)
 
@@ -212,8 +194,6 @@ export default defineNuxtConfig({
 </template>
 ```
 
----
-
 # API
 
 ## Directive: `v-reveal`
@@ -225,8 +205,6 @@ export default defineNuxtConfig({
 | `once`       | boolean | false   | Animate only once              |
 | `threshold`  | number  | 0.1     | Visibility % before triggering |
 | `rootMargin` | string  | "0px"   | Margin around the viewport     |
-
----
 
 ## Directive: `v-reveal-group`
 
@@ -240,8 +218,6 @@ Allows animating a group of elements with a stagger effect.
 </div>
 ```
 
----
-
 ## HTML Attributes
 
 | Attribute            | Description                  |
@@ -250,8 +226,6 @@ Allows animating a group of elements with a stagger effect.
 | `leave-active-class` | Classes applied on leave     |
 | `reveal-item`        | Marks an item inside a group |
 | `data-delay`         | Delay override               |
-
----
 
 # Advanced examples
 
@@ -282,8 +256,6 @@ Allows animating a group of elements with a stagger effect.
 </style>
 ```
 
----
-
 ## Example with stagger
 
 ```vue
@@ -311,8 +283,6 @@ Allows animating a group of elements with a stagger effect.
 </style>
 ```
 
----
-
 # Best practices
 
 * Use `transform` and `opacity` (GPU-friendly)
@@ -322,15 +292,11 @@ Allows animating a group of elements with a stagger effect.
 
 > Animation classes must include their own CSS transitions (`transition`, `duration`, etc.)
 
----
-
 # Compatibility
 
 * ✅ Nuxt 3
 * ✅ SSR safe
 * ✅ Modern browsers (IntersectionObserver)
-
----
 
 # Contribution
 
@@ -363,8 +329,17 @@ pnpm release
 
 </details>
 
----
-
 # License
 
 MIT
+
+<!-- Badges -->
+
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-reveal/latest.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-version-href]: https://npmjs.com/package/nuxt-reveal
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-reveal.svg?style=flat&colorA=020420&colorB=00DC82
+[npm-downloads-href]: https://npm.chart.dev/nuxt-reveal
+[license-src]: https://img.shields.io/npm/l/nuxt-reveal.svg?style=flat&colorA=020420&colorB=00DC82
+[license-href]: https://npmjs.com/package/nuxt-reveal
+[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt
+[nuxt-href]: https://nuxt.com
