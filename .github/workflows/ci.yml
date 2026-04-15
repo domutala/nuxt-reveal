@@ -75,4 +75,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - run: npm ci
-      - run: npm release
+      - run: npm run release
