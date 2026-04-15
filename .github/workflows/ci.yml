@@ -64,7 +64,7 @@ jobs:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
 
-      - run: npm i -g --force corepack@latest && corepack enable pnpm
+      # - run: npm i -g --force corepack@latest && corepack enable pnpm
 
       - name: Install dependencies
         run: npx nypm@latest i
@@ -75,4 +75,4 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - run: npm ci
-      - run: pnpm release
+      - run: npm release
