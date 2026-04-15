@@ -14,6 +14,7 @@ export interface ModuleOptions {
     | {
         delay?: number;
         direction: "normal" | "reverse" | "center" | "random";
+        from: "center" | "start" | "end";
       };
 }
 

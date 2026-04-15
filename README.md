@@ -5,26 +5,24 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-**nuxt-reveal** est un module Nuxt 3 qui permet d’animer facilement les éléments lorsqu’ils apparaissent dans le viewport (scroll reveal), basé sur `IntersectionObserver`.
+**nuxt-reveal** is a Nuxt 3 module that makes it easy to animate elements when they enter the viewport (scroll reveal), based on `IntersectionObserver`.
 
-Compatible avec n’importe quelle librairie d’animation comme `Animate.css`, ou même des animations CSS custom.
+Compatible with any animation library like [animate.css](https://animate.style/), or even custom CSS animations.
 
----
-
-* [✨  Release Notes](/CHANGELOG.md)
+* [✨ Release Notes](/CHANGELOG.md)
 
 ---
 
 # Features
 
-* Basé sur `IntersectionObserver` (performant et natif)
-* Compatible avec Animate.css, Tailwind, CSS custom
-* API simple via directive `v-reveal`
-* Support du stagger (animations en cascade)
-* Support des groupes (`v-reveal-group`)
-* Delay par élément via `data-delay`
-* Support `once` ou animations réversibles
-* Zéro dépendance externe
+* Based on `IntersectionObserver` (native and performant)
+* Compatible with Animate.css, Tailwind, and custom CSS
+* Simple API via the `v-reveal` directive
+* Stagger support (sequential animations)
+* Group support (`v-reveal-group`)
+* Per-element delay via `data-delay`
+* Supports `once` or reversible animations
+* Zero external dependencies
 * SSR safe (Nuxt 3)
 
 ---
@@ -33,32 +31,46 @@ Compatible avec n’importe quelle librairie d’animation comme `Animate.css`, 
 
 ```bash
 npx nuxt module add nuxt-reveal
-````
+```
 
 ---
 
-# ⚙️ Utilisation
+# Usage
 
-## 1. Directive `v-reveal`
+## 1. `v-reveal` Directive
 
-La directive est automatiquement enregistrée.
+The directive is automatically registered.
 
-### Exemple simple
+### Basic example
 
 ```vue
 <template>
   <div
     v-reveal
-    enter-active-class="animate__animated animate__fadeInUp"
+    enter-active-class="fade-in"
+    leave-active-class="fade-out"
   >
     Hello 👋
   </div>
 </template>
+
+<style>
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(40px);
+}
+</style>
 ```
 
 ---
 
-## 2. Avec options
+## 2. With options
 
 ```vue
 <script setup lang="ts">
@@ -71,8 +83,8 @@ const reveal = {
 <template>
   <div
     v-reveal="reveal"
-    enter-active-class="animate__animated animate__fadeInUp"
-    leave-active-class="animate__fadeOut"
+    enter-active-class="fade-in"
+    leave-active-class="fade-out"
   >
     Animated element
   </div>
@@ -81,36 +93,36 @@ const reveal = {
 
 ---
 
-# Animations en groupe (stagger)
+# Group animations (stagger)
 
-Permet d’animer plusieurs éléments en cascade (effet "stagger").
+Allows multiple elements to be animated sequentially (stagger effect).
 
-## Exemple
+## Example
 
 ```vue
 <template>
-  <div v-reveal-group>
-    <div reveal-item enter-active-class="fade-in">Item 1</div>
-    <div reveal-item enter-active-class="fade-in">Item 2</div>
-    <div reveal-item enter-active-class="fade-in">Item 3</div>
+  <div v-reveal-group enter-active-class="fade-in">
+    <div reveal-item>Item 1</div>
+    <div reveal-item>Item 2</div>
+    <div reveal-item>Item 3</div>
   </div>
 </template>
 ```
 
-👉 Tous les éléments avec `reveal-item` seront animés avec un délai progressif.
+👉 All elements with `reveal-item` will be animated with a progressive delay.
 
 ---
 
-## ⚙️ Configuration du stagger
+## Stagger configuration
 
-Dans `nuxt.config.ts` :
+In `nuxt.config.ts`:
 
 ```ts
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       reveal: {
-        stagger: 100, // 100ms entre chaque élément
+        stagger: 100, // 100ms between each element
       },
     },
   },
@@ -119,7 +131,7 @@ export default defineNuxtConfig({
 
 ---
 
-## 🎯 Stagger avancé
+## Advanced stagger
 
 ```ts
 export default defineNuxtConfig({
@@ -136,21 +148,21 @@ export default defineNuxtConfig({
 });
 ```
 
-### Options disponibles
+### Available options
 
-| Option    | Description                |
-| --------- | -------------------------- |
-| `start`   | animation de haut en bas   |
-| `end`     | animation de bas en haut   |
-| `center`  | animation depuis le centre |
-| `reverse` | inverse l’ordre            |
-| `random`  | ordre pseudo-aléatoire     |
+| Option    | Description                  |
+| --------- | ---------------------------- |
+| `start`   | animation from top to bottom |
+| `end`     | animation from bottom to top |
+| `center`  | animation from center        |
+| `reverse` | reverse order                |
+| `random`  | pseudo-random order          |
 
 ---
 
-# ⏱️ Delay par élément
+# Per-element delay
 
-Tu peux override le delay individuellement :
+You can override the delay individually:
 
 ```vue
 <template>
@@ -162,15 +174,15 @@ Tu peux override le delay individuellement :
 </template>
 ```
 
-👉 Supporte :
+👉 Supports:
 
-* `200` → converti en `200ms`
+* `200` → converted to `200ms`
 * `200ms`
 * `0.3s`
 
 ---
 
-# 🎨 Intégration avec Animate.css
+# Integration with [animate.css](https://animate.style/)
 
 ## Installation
 
@@ -178,7 +190,7 @@ Tu peux override le delay individuellement :
 yarn add animate.css
 ```
 
-## Configuration Nuxt
+## Nuxt configuration
 
 ```ts
 export default defineNuxtConfig({
@@ -186,7 +198,7 @@ export default defineNuxtConfig({
 });
 ```
 
-## Exemple
+## Example
 
 ```vue
 <template>
@@ -202,25 +214,25 @@ export default defineNuxtConfig({
 
 ---
 
-# 🧠 API
+# API
 
 ## Directive: `v-reveal`
 
 ### Options
 
-| Option       | Type    | Default | Description                         |
-| ------------ | ------- | ------- | ----------------------------------- |
-| `once`       | boolean | false   | Animation une seule fois            |
-| `threshold`  | number  | 0.1     | % de visibilité avant déclenchement |
-| `rootMargin` | string  | "0px"   | marge autour du viewport            |
+| Option       | Type    | Default | Description                    |
+| ------------ | ------- | ------- | ------------------------------ |
+| `once`       | boolean | false   | Animate only once              |
+| `threshold`  | number  | 0.1     | Visibility % before triggering |
+| `rootMargin` | string  | "0px"   | Margin around the viewport     |
 
 ---
 
 ## Directive: `v-reveal-group`
 
-Permet d’animer un groupe d’éléments avec effet stagger.
+Allows animating a group of elements with a stagger effect.
 
-### Utilisation
+### Usage
 
 ```vue
 <div v-reveal-group>
@@ -230,20 +242,20 @@ Permet d’animer un groupe d’éléments avec effet stagger.
 
 ---
 
-## Attributs HTML
+## HTML Attributes
 
-| Attribut             | Description                      |
-| -------------------- | -------------------------------- |
-| `enter-active-class` | Classes ajoutées à l’entrée      |
-| `leave-active-class` | Classes ajoutées à la sortie     |
-| `reveal-item`        | Marque un élément dans un groupe |
-| `data-delay`         | Override du delay                |
+| Attribute            | Description                  |
+| -------------------- | ---------------------------- |
+| `enter-active-class` | Classes applied on enter     |
+| `leave-active-class` | Classes applied on leave     |
+| `reveal-item`        | Marks an item inside a group |
+| `data-delay`         | Delay override               |
 
 ---
 
-# 💡 Exemples avancés
+# Advanced examples
 
-## Animation custom CSS
+## Custom CSS animation
 
 ```vue
 <template>
@@ -272,7 +284,7 @@ Permet d’animer un groupe d’éléments avec effet stagger.
 
 ---
 
-## Exemple avec stagger
+## Example with stagger
 
 ```vue
 <template>
@@ -301,26 +313,26 @@ Permet d’animer un groupe d’éléments avec effet stagger.
 
 ---
 
-# ⚡ Bonnes pratiques
+# Best practices
 
-* Utiliser `transform` et `opacity` (GPU friendly)
-* Éviter trop d’éléments dans un même groupe (> 100)
-* Préférer `once: true` pour les sections statiques
-* Utiliser `stagger` pour améliorer la perception UX
+* Use `transform` and `opacity` (GPU-friendly)
+* Avoid too many elements in the same group (> 100)
+* Prefer `once: true` for static sections
+* Use `stagger` to improve UX perception
 
-> ℹ️ Les classes d’animation doivent inclure leurs propres transitions CSS (`transition`, `duration`, etc.)
+> Animation classes must include their own CSS transitions (`transition`, `duration`, etc.)
 
 ---
 
-# 🧪 Compatibilité
+# Compatibility
 
 * ✅ Nuxt 3
 * ✅ SSR safe
-* ✅ Navigateurs modernes (IntersectionObserver)
+* ✅ Modern browsers (IntersectionObserver)
 
 ---
 
-# 🤝 Contribution
+# Contribution
 
 <details>
   <summary>Local development</summary>
@@ -353,19 +365,6 @@ pnpm release
 
 ---
 
-# 📄 License
+# License
 
 MIT
-
----
-
-<!-- Badges -->
-
-[npm-version-src]: https://img.shields.io/npm/v/nuxt-reveal/latest.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-version-href]: https://npmjs.com/package/nuxt-reveal
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-reveal.svg?style=flat&colorA=020420&colorB=00DC82
-[npm-downloads-href]: https://npm.chart.dev/nuxt-reveal
-[license-src]: https://img.shields.io/npm/l/nuxt-reveal.svg?style=flat&colorA=020420&colorB=00DC82
-[license-href]: https://npmjs.com/package/nuxt-reveal
-[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt
-[nuxt-href]: https://nuxt.com

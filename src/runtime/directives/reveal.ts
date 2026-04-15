@@ -28,8 +28,8 @@ export const revealDirectiveGroup: ObjectDirective = {
     nuxtApp.$reveal.observeGroup(el, binding.value);
   },
 
-  // unmounted(el: HTMLElement) {
-  //   const nuxtApp = useNuxtApp();
-  //   nuxtApp.$reveal.unobserve(el);
-  // },
+  unmounted(el: HTMLElement) {
+    const nuxtApp = useNuxtApp();
+    nuxtApp.$reveal.unobserve(el);
+  },
 };
